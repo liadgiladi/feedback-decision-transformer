@@ -1,1 +1,1 @@
-# feedback-decision-transformer
+# Feedback-Decision-Transformer
