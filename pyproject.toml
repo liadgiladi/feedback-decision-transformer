@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "dt"
+version = "0.1.0"
+description = "feedback-decision-transformer"
+authors = ["liadgiladi@gmail.com"]
+
+[tool.poetry.dependencies]
+python = "3.7.12"
+Pillow = "7.1.2"
+numpy = "1.19.5"
+scipy = "1.4.1"
+absl-py = "0.12.0"
+jaxlib = "0.1.71"
+flatbuffers = "2.0"
+jax = "0.2.25"
+cupy-cuda111 = "9.4.0"
+opencv-python = "4.1.2.30"
+wandb = "0.12.11"
+gin-config = "0.5.0"
+dopamine-rl = "4.0.2"
+pytorch-lightning = "1.5.10"
+gym = {version = "0.17.3", extras = ["atari"]}
+torch = "1.10.2"
+tensorflow = "2.7.0"
+poethepoet = "^0.11.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+force-torch-cuda11 = "pip3 install torch==1.10.2+cu111 torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_stable.html"
+force-jaxlib-cuda11 = "pip3 install jaxlib==0.1.71+cuda111 -f https://storage.googleapis.com/jax-releases/jax_releases.html"
