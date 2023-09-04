@@ -37,128 +37,95 @@ gsutil -m cp -R gs://atari-replay-datasets/dqn/[GAME_NAME] [DQN_REPLAY_DIRECTORY
 ## Run Training 
 
 ### FDT
-#### Breakout & Qbert & Seaquest
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --gpus 1 --lr 6e-4 --states_for_feedbacks_based_on_important_states [IMPORTANT_STATES_FILE_NAME] --num_of_important_states [FEEDBACK_NUM] --feedback_regularization_lambda [FEEDBACK_LAMBDA] --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game [GAME] --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-
-#### Pong
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --lr 6e-4 --states_for_feedbacks_based_on_important_states [IMPORTANT_STATES_FILE_NAME] --num_of_important_states [FEEDBACK_NUM] --feedback_regularization_lambda [FEEDBACK_LAMBDA] --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
 ===============
 
 ### DT
-#### Breakout & Qbert & Seaquest
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --gpus 1 --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game [GAME] --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-
-#### Pong
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
 ===============
 
 ### BC
-#### Breakout & Qbert & Seaquest
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --model_type naive --gpus 1 --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game [GAME] --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-
-#### Pong
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --model_type naive --gpus 1 --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs 5 --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
 
 ## Run Evaluation
 ### FDT
-#### Breakout & Qbert
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --gpus 1 --eval_model --wandb_project_name_for_loading_pretrained_model [WANDB_PRETRAINED_MODEL_PROJECT_NAME] --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --states_for_feedbacks_based_on_important_states [IMPORTANT_STATES_FILE_NAME] --num_of_important_states [FEEDBACK_NUM] --feedback_regularization_lambda [FEEDBACK_LAMBDA] --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game [GAME] --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-### Seaquest
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --eval_model --wandb_project_name_for_loading_pretrained_model [WANDB_PRETRAINED_MODEL_PROJECT_NAME] --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --states_for_feedbacks_based_on_important_states [IMPORTANT_STATES_FILE_NAME] --num_of_important_states [FEEDBACK_NUM] --feedback_regularization_lambda [FEEDBACK_LAMBDA] --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Seaquest' --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
-#### Pong
+
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --eval_model --wandb_project_name_for_loading_pretrained_model [WANDB_PRETRAINED_MODEL_PROJECT_NAME] --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --states_for_feedbacks_based_on_important_states [IMPORTANT_STATES_FILE_NAME] --num_of_important_states [FEEDBACK_NUM] --feedback_regularization_lambda [FEEDBACK_LAMBDA] --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
 ===============
 
 ### DT
-#### Breakout & Qbert
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --gpus 1 --eval_model --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game [GAME] --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-### Seaquest
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --eval_model --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Seaquest' --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
-#### Pong
+
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --gpus 1 --eval_model --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
 ===============
 
 ### BC
-#### Breakout & Qbert
 ```
 for seed in 123 231 312 0 42 84 64 128 256 512
 do
 	python run.py --model_type naive --gpus 1 --eval_model --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game [GAME] --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
 done
 ```
-### Seaquest
+**Remark**: for Pong set the following flags to control the batch-size and context-length:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --model_type naive --gpus 1 --eval_model --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Seaquest' --batch_size 128 --context_length 30 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--batch_size 256 --context_length 50
 ```
-#### Pong
+
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
 ```
-for seed in 123 231 312 0 42 84 64 128 256 512
-do
-	python run.py --model_type naive --gpus 1 --eval_model --test_seeds '[123, 231, 312, 0, 42, 84, 64, 128, 256, 512]' --lr 6e-4 --wandb_project_name [WANDB_PROJECT_NAME] --conditioned_rtg [CONDITIONED_RTG] --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --disable_training_game_evaluation_callback --epochs [EPOCH] --game 'Pong' --batch_size 256 --context_length 50 --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME]
-done
+--test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
 
 ## Generate Important States For Feedback
@@ -215,13 +182,13 @@ To generate oracle feedback, follow these steps:
 
 2. Run the provided script using the following command, specifying the game and pretrained agent name. This will result in the creation of a directory named 'dqn_feedback' containing the relevant ORACLE feedback output.
 
-### Execution
+### Execution:
 ```bash
 python augment_dataset_with_oracle_feedback_dopamine.py --game [GAME] --agent_name 'c51'
 ```
 
 ## Results
-All hyperparameters and logs of our runs can be viewed at our TODO project.
+You can access all the hyperparameters and logs for our experimental runs in our TODO project. Additionally, for more comprehensive information regarding the experiment configurations, including hyperparameters, setup, dataset details, and more, please consult the accompanying appendix PDF file.
 
 ## Citation
 
