@@ -163,6 +163,50 @@ done
 
 ## Generate Important States For Feedback
 
+To generate important states for feedback, run the following:
+
+```bash
+for seed in 123 231 312 0 42 84 64 128 256 512
+do
+	python generate_important_states.py --seed $seed --generate_dataset_seed $seed --augment_only_sparse_reward_with_synthetic_oracle_feedback --num_frames 4 --num_steps 50000000 --num_buffers 50 --game [GAME] --context_length [CONTEXT_LENGTH] --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME] --notify_important_states_with_multiple_occurrences_n [CELL_SAMPLING_STRATEGY] --minimum_num_state_rtgs_to_consider_for_important_state [MINIMUM_REQUIRED_RTG] --gamma [GAMMA] --life_loss_negative_reward [LIFE_LOSS_NEGATIVE_REWARD] --steps_ahead_for_terminal_or_life_loss_state [WINDOW_STEPS_AHEAD_FOR_LIFE_LOSS]
+done
+````
+
+Upon execution, a set of 2 files will be generated for each seed, following this pattern:
+
+```
+500000_{game}_{seed}_{gamma}_{kernel_size}-{stride}_{num_steps}_{num_frames}_{minimum_num_state_rtgs_to_consider_for_important_state}_{window_size_for_important_state}_multiple_occurrences_{notify_important_states_with_multiple_occurrences_n}_first_visit_{first_visit_state_action}_important_states_indices_with_life_loss_{steps_ahead_for_terminal_or_life_loss_state}_{life_loss_negative_reward}
+```
+
+Among these files, one carries a .npz extension and the other a .txt extension. The former file encompasses states from the chosen game, while the latter holds the subsequent metadata:
+
+```
+X transitions total divided into X trajectories
+total num of states allowed for feedback is X
+num of states allowed for feedback is X
+num_states_that_sometimes_not_valid_but_already_candidates X
+num_states_that_are_skipped X
+num of valid states is X
+num_of_state_ignored_due_to_small_rtg_samples X
+num_of_states_with_more_than_2_actions_before_removing_actions X
+num of valid states with more than 2 actions is X
+important states num: X
+important states indices: X
+job-id: X
+start time X
+end time X
+```
+
+### Viewing States
+To observe metadata and significant states, initiate the following command:
+
+```bash
+python generate_important_states.py --export_important_states_as_images --seed [SEED] --generate_dataset_seed [SEED] --augment_only_sparse_reward_with_synthetic_oracle_feedback --num_frames 4 --num_steps 50000000 --num_buffers 50 --game [GAME] --context_length [CONTEXT_LENGTH] --data_dir_prefix [DQN_REPLAY_DIRECTORY_NAME] --notify_important_states_with_multiple_occurrences_n [CELL_SAMPLING_STRATEGY] --minimum_num_state_rtgs_to_consider_for_important_state [MINIMUM_REQUIRED_RTG] --gamma [GAMMA] --life_loss_negative_reward [LIFE_LOSS_NEGATIVE_REWARD] --steps_ahead_for_terminal_or_life_loss_state [WINDOW_STEPS_AHEAD_FOR_LIFE_LOSS]
+````
+
+Executing this will generate a folder structured in the previously mentioned file format, containing the significant states of the selected game.
+Note: require the relevant generated *.npz file.
+
 ## Oracle Feedback Generation
 
 To generate oracle feedback, follow these steps:
