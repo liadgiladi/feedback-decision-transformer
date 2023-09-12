@@ -181,16 +181,18 @@ To generate oracle feedback, follow these steps:
 
 2. Run the provided script using the following command, specifying the game and pretrained agent name. This will result in the creation of a directory named 'dqn_feedback' containing the relevant Oracle feedback output.
 
-### Augmented DQN Replay Dataset with Oracle Feedback
-Our augmented DQN Replay Dataset with Oracle feedback can be found under the directory: TODO
-
 ### Execution:
 ```bash
 python augment_dataset_with_oracle_feedback_dopamine.py --game [GAME] --agent_name 'c51'
 ```
 
-## Results
-You can access all the hyperparameters and logs for our experimental runs in our TODO project. Additionally, for more comprehensive information regarding the experiment configurations, including hyperparameters, setup, dataset details, and more, please consult the accompanying appendix PDF file.
+### Augmented DQN Replay Dataset with Oracle Feedback
+Our augmented DQN Replay Dataset with Oracle feedback can be found under the directory: TODO
+
+## Detailed Results + Experimental Details
+You can access all the hyperparameters and logs for our experimental runs in our TODO project. 
+
+Additionally, for more comprehensive information regarding the experiment configurations, including hyperparameters, setup, dataset details, and more detailed results, please consult the accompanying appendix PDF file.
 
 ## Citation
 
