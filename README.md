@@ -12,7 +12,6 @@ The official codebase for [Feedback Decision Transformer: Offline Reinforcement 
 
 TL;DR: We propose Feedback Decision Transformer (FDT), a data-driven approach that uses limited amounts of high-quality feedback at critical states to significantly improve DT’s performance.
 
-
 ![image info](./architecture.PNG)
 
 ## Installation
@@ -87,7 +86,7 @@ done
 --batch_size 256 --context_length 50
 ```
 
-**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed 1028 instead of seed 0. Consequently, replace the following flag:
 ```
 --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
@@ -105,7 +104,7 @@ done
 --batch_size 256 --context_length 50
 ```
 
-**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed 1028 instead of seed 0. Consequently, replace the following flag:
 ```
 --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
@@ -123,7 +122,7 @@ done
 --batch_size 256 --context_length 50
 ```
 
-**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed #1028 instead of seed #0. Consequently, replace the following flag:
+**Remark**: in the case of Seaquest, due to inconsistencies and a bug in the Atari environment package, please run it with seed 1028 instead of seed 0. Consequently, replace the following flag:
 ```
 --test_seeds '[123, 231, 312, 1024, 42, 84, 64, 128, 256, 512]'
 ```
@@ -180,7 +179,10 @@ To generate oracle feedback, follow these steps:
 
 1. Download the [C51 checkpoints](https://github.com/google/dopamine/tree/master/docs#downloads) and save them in the directory in the following format: './synthetic_oracle/checkpoints/{agent_name}/{game}/'.
 
-2. Run the provided script using the following command, specifying the game and pretrained agent name. This will result in the creation of a directory named 'dqn_feedback' containing the relevant ORACLE feedback output.
+2. Run the provided script using the following command, specifying the game and pretrained agent name. This will result in the creation of a directory named 'dqn_feedback' containing the relevant Oracle feedback output.
+
+### Augmented DQN Replay Dataset with Oracle Feedback
+Our augmented DQN Replay Dataset with Oracle feedback can be found under the directory: TODO
 
 ### Execution:
 ```bash
