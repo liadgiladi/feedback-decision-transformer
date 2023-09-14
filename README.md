@@ -187,7 +187,7 @@ python augment_dataset_with_oracle_feedback_dopamine.py --game [GAME] --agent_na
 ```
 
 ### Augmented DQN Replay Dataset with Oracle Feedback
-Our augmented DQN Replay Dataset with Oracle feedback can be found under the directory: TODO
+Our augmented DQN Replay Dataset with Oracle feedback can be found under the directory: 'feedback_augmented_dqn_replay_dataset'
 
 ## Detailed Results + Experimental Details
 You can access all the hyperparameters and logs for our experimental runs in our TODO project. 
