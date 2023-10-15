@@ -4,6 +4,7 @@ Author: Liad Giladi.
 
 This project was carried out as part of my master's thesis, supervised by Dr. Gilad Katz.
 
+Our paper has been accepted for publication at the 2023 IEEE ICDM 2023.
 A link to our paper can be found on [arXiv](TODO).
 
 ## Overview
